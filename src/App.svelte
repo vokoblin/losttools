@@ -1,7 +1,7 @@
 <script lang="ts">
   import TailwindCss from "./lib/TailwindCSS.svelte";
   import Sidebar from "./components/sidebar/Sidebar.svelte";
-  import Content from "./components/MainContent.svelte";
+  import Content from "./components/Content.svelte";
 </script>
 
 <TailwindCss />
