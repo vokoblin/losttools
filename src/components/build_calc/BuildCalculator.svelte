@@ -2,6 +2,7 @@
   import StepTab from "./StepTab.svelte";
   import Dropdown from "../generic/Dropdown.svelte";
   import Engraving from "../engraving/Engraving.svelte";
+  import EngravingSelect from "../engraving/EngravingSelect.svelte";
 
   const engravings = [
     {key: 'Adrenaline', name: "Adrenaline", desc: "", type: "battle"},
@@ -87,18 +88,20 @@
     {key: 'FirstIntention', class: "wardancer", type: "class", name: "First Intention", desc: ""},
   ];
 
-  const engravingsOptions = engravings.reduce((a, e) => {
-    a[e.key] = e.name;
-    return a;
-  },{});
-
   let selectedEngravings = [];
 
-  function addEngraving() {
-    const sel = document.getElementById('engraving_selector');
-    const selEngraving = sel[sel['selectedIndex']]['id'];
+  function openEngravingSelect() {
+    const select = document.getElementById("eng-select")
+    select.className = "absolute left-0 top-0 w-full h-full bg-gray-900 opacity-90 flex justify-center items-center";
+  }
 
-    selectedEngravings[selectedEngravings.length] = engravings.find(e => e.key == selEngraving)
+  function closeEngravingSelect() {
+    const select = document.getElementById("eng-select")
+    select.className = "hidden";
+  }
+
+  function addEngraving(key: string) {
+    selectedEngravings[selectedEngravings.length] = engravings.find(e => e.key == key)
   }
 </script>
 
@@ -111,13 +114,23 @@
   </div>
   <div class="flex flex-col text-center w-full">
     <div class="flex flex-row mb-20">
-      <Dropdown id="engraving_selector" text="Engravings" options={engravingsOptions} />
+      <Dropdown 
+        id="class_selector" 
+        text="Class" 
+        options={{'berserker': "Berserker", 'gunlancer': "Gun Lancer"}} 
+      />
     </div>
     <div id="engravings" class="flex flex-col flex-wrap mb-20">
-      <Engraving onClick={addEngraving} />
+      <Engraving onClick={openEngravingSelect} />
       {#each selectedEngravings as engraving}
         <Engraving {engraving} />
 		  {/each}
     </div>
+  </div>
+</div>
+
+<div id="eng-select" class="hidden" on:click={closeEngravingSelect}>
+  <div class="w-1/4 h-1/2">
+    <svelte:component id="test" this={EngravingSelect} onSelect={addEngraving} onClose={closeEngravingSelect} {engravings} />
   </div>
 </div>
