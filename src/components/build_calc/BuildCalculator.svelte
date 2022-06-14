@@ -20,7 +20,7 @@
     {key: 'DropsOfEther', name: "Drops of Ether", desc: "", type: "battle"},
     {key: 'EmergencyRescue', name: "Emergency Rescue", desc: "", type: "battle"},
     {key: 'EnhancedShield', name: "Enhanced Shield", desc: "", type: "battle"},
-    {key: 'EtherPredaTor', name: "Ether Predator", desc: "", type: "battle"},
+    {key: 'EtherPredator', name: "Ether Predator", desc: "", type: "battle"},
     {key: 'Expert', name: "Expert", desc: "", type: "battle"},
     {key: 'ExplosiveExpert', name: "Explosive Expert", desc: "", type: "battle"},
     {key: 'Fortitude', name: "Fortitude", desc: "", type: "battle"},
