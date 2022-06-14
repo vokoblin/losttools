@@ -7,7 +7,7 @@
         const classPrefix = engraving.class ? "_" + engraving.class : "";
         const iconName = engraving.type + classPrefix + "_" + engraving.key;
 
-        return `engravings/${iconName}`;
+        return `engraving_${iconName}`;
     }
 </script>
 

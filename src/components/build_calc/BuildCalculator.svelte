@@ -104,7 +104,7 @@
 
 <div class="container mx-auto flex flex-wrap flex-col">
   <div class="flex mx-auto flex-wrap mb-20">
-    <StepTab selected name="Engravings" icon={"ring_icon"} />
+    <StepTab selected name="Engravings" icon={"icon_ring"} />
     <StepTab name="Books" icon={"icon_engraving_book"} />
     <StepTab name="Stone" icon={"icon_ability_stone"} />
     <StepTab name="Prices" icon={"icon_gold"} />

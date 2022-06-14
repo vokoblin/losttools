@@ -40,7 +40,7 @@
     }
 
     .engraving-frame {
-        @apply bg-[url('../img/engravings/border_engraving_frame.webp')] bg-no-repeat bg-left bg-cover;
+        @apply bg-[url('../img/engraving_icon_frame.webp')] bg-no-repeat bg-left bg-cover;
     }
 
     .engraving-lvl-bg {
@@ -48,7 +48,7 @@
     }
 
     .engraving-lvl {
-        @apply bg-[url('../img/engravings/engraving_lvl_diamonds.webp')] bg-no-repeat w-6 h-6;
+        @apply bg-[url('../img/engraving_icon_diamonds.webp')] bg-no-repeat w-6 h-6;
     }
 
     .engraving-lvl-up {
