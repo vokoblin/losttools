@@ -1,23 +1,18 @@
 <script lang="ts">
+    import Image from "../generic/Image.svelte";
+
     export let engraving = undefined;
 
     function getIconPath() {
-        if (!engraving) return;
-
         const classPrefix = engraving.class ? "_" + engraving.class : "";
         const iconName = engraving.type + classPrefix + "_" + engraving.key;
-        const iconPath = `/losttools/src/assets/img/engravings/${iconName}.webp`;
 
-        return iconPath;
+        return `engravings/${iconName}`;
     }
 </script>
 
 {#if engraving}
-    <img
-        class="absolute ml-1/5 mt-1/5 w-3/5 h-3/5"
-        src={getIconPath()}
-        alt=""
-    />
+    <Image path={getIconPath()} style={"absolute ml-1/5 mt-1/5 w-3/5 h-3/5"} />
     <div class="absolute engraving-frame w-full h-full" />
 {:else}
     <div class="engraving-frame w-full h-full">

@@ -1,8 +1,5 @@
 <script lang="ts">
   import StepTab from "./StepTab.svelte";
-  import Book from "../../assets/img/icon_engraving_book.webp";
-  import Stone from "../../assets/img/icon_ability_stone.webp";
-  import Gold from "../../assets/img/icon_gold.webp";
   import Dropdown from "../generic/Dropdown.svelte";
   import Engraving from "../engraving/Engraving.svelte";
 
@@ -107,15 +104,13 @@
 
 <div class="container mx-auto flex flex-wrap flex-col">
   <div class="flex mx-auto flex-wrap mb-20">
-    <StepTab selected name="Engravings" />
-    <StepTab name="Books" icon={Book} />
-    <StepTab name="Stone" icon={Stone} />
-    <StepTab name="Prices" icon={Gold} />
+    <StepTab selected name="Engravings" icon={"ring_icon"} />
+    <StepTab name="Books" icon={"icon_engraving_book"} />
+    <StepTab name="Stone" icon={"icon_ability_stone"} />
+    <StepTab name="Prices" icon={"icon_gold"} />
   </div>
   <div class="flex flex-col text-center w-full">
     <div class="flex flex-row mb-20">
-      <Dropdown text="Region" options={{ test: "TEST" }} />
-      <Dropdown text="Class" options={{ test: "TEST" }} />
       <Dropdown id="engraving_selector" text="Engravings" options={engravingsOptions} />
     </div>
     <div id="engravings" class="flex flex-col flex-wrap mb-20">
