@@ -88,14 +88,36 @@
     {key: 'FirstIntention', class: "wardancer", type: "class", name: "First Intention", desc: ""},
   ];
 
+  const classs = engravings.filter(e => e.class).map(e => e.class);
+
+  function getClassOptions() {
+    const options = {};
+
+    classs.forEach(e => {
+      options[e] = e.charAt(0).toUpperCase() + e.slice(1)
+    });
+
+    return options;
+  }
+
+  let engravingSelect = EngravingSelect;
+  let engravingSelectPkg = {
+      onSelect: addEngraving,
+      onClose: closeEngravingSelect,
+      userClass: classs[0],
+      engravings
+  }
+
   let selectedEngravings = [];
 
   function openEngravingSelect() {
+    engravingSelect = EngravingSelect;
     const select = document.getElementById("eng-select")
     select.className = "absolute left-0 top-0 w-full h-full bg-gray-900 opacity-90 flex justify-center items-center";
   }
 
   function closeEngravingSelect() {
+    engravingSelect = undefined;
     const select = document.getElementById("eng-select")
     select.className = "hidden";
   }
@@ -116,12 +138,13 @@
     <div class="flex flex-row mb-20">
       <Dropdown 
         id="class_selector" 
-        text="Class" 
-        options={{'berserker': "Berserker", 'gunlancer': "Gun Lancer"}} 
+        text="Class"
+        options={getClassOptions()} 
+        bind:value={engravingSelectPkg.userClass}
       />
     </div>
     <div id="engravings" class="flex flex-col flex-wrap mb-20">
-      <Engraving onClick={openEngravingSelect} />
+      <Engraving on:click={openEngravingSelect} />
       {#each selectedEngravings as engraving}
         <Engraving {engraving} />
 		  {/each}
@@ -131,6 +154,6 @@
 
 <div id="eng-select" class="hidden" on:click={closeEngravingSelect}>
   <div class="w-1/4 h-1/2">
-    <svelte:component id="test" this={EngravingSelect} onSelect={addEngraving} onClose={closeEngravingSelect} {engravings} />
+    <svelte:component this={engravingSelect} {...engravingSelectPkg} />
   </div>
 </div>

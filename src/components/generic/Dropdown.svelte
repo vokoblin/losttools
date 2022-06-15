@@ -2,14 +2,16 @@
   export let text = "";
   export let options = {};
   export let id = 'selector';
+
+  export let value = '';
 </script>
 
 <div class="flex items-center w-full h-full">
   <span class="mr-3">{text}:</span>
   <div class="relative w-full">
-    <select id={id}>
+    <select id={id} bind:value={value}>
       {#each Object.keys(options) as key}
-        <option id={key}>{options[key]}</option>
+        <option value={key}>{options[key]}</option>
       {/each}
     </select>
     <span class="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center">

@@ -5,19 +5,17 @@
     export let engraving = undefined;
     export let level = 0;
     export let reduction = false;
-    export let size = 'w-64'
-
-    export let onClick = () => {};
+    export let size = 'w-64';
 
     let isBuff = !reduction;
 
     function updateLevel(newLevel) {
-        if (!engraving) return;
+        if (!engraving) return () => {};
         return () => level = newLevel;
     }
 </script>
 
-<li on:click={onClick} class="flex flex-row {engraving ? '' : 'cursor-pointer'} {size}">
+<li class="flex flex-row {engraving ? '' : 'cursor-pointer'} {size}" on:click>
     <div class="relative w-16 h-16 cursor-pointer">
         <EngravingFrame {engraving} />
     </div>
@@ -26,9 +24,9 @@
             {engraving ? engraving.name : "Select engraving..."}
         </div>
         <div class="flex-auto flex flex-row cursor-pointer">
-            <LevelDimond onClick={updateLevel(1)} state={level > 0 ? isBuff : undefined} first />
-            <LevelDimond onClick={updateLevel(2)} state={level > 1 ? isBuff : undefined} />
-            <LevelDimond onClick={updateLevel(3)} state={level > 2 ? isBuff : undefined} last />
+            <LevelDimond on:click={updateLevel(1)} state={level > 0 ? isBuff : undefined} first />
+            <LevelDimond on:click={updateLevel(2)} state={level > 1 ? isBuff : undefined} />
+            <LevelDimond on:click={updateLevel(3)} state={level > 2 ? isBuff : undefined} last />
         </div>
     </div>
 </li>

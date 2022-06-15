@@ -2,10 +2,9 @@
     export let state = undefined;
     export let first = false;
     export let last = false;
-    export let onClick = () => {};
 </script>
 
-<div on:click={onClick} class="engraving-lvl-bg {first ? '' : 'ml-px'} {last ? '' : 'mr-px'}">
+<div class="engraving-lvl-bg {first ? '' : 'ml-px'} {last ? '' : 'mr-px'}" on:click>
     <div class="engraving-lvl {
             state === true
                 ? 'engraving-lvl-up'
