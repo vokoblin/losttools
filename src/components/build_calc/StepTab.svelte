@@ -7,7 +7,7 @@
     export let icon_alt = "";
 </script>
 
-<div class="step-tab {selected ? 'step-tab-selected' : 'hover'}">
+<div class="step-tab {selected ? 'step-tab-selected' : 'hover'}" on:click>
     <Image path={icon} style={"w-5 h-5 mr-3"} alt={icon_alt} />
     {name}
 </div>

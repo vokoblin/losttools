@@ -6,12 +6,17 @@
     export let level = 0;
     export let reduction = false;
     export let size = 'w-64';
+    export let onLvlChange = (lvl: number) => {};
 
     let isBuff = !reduction;
 
     function updateLevel(newLevel) {
         if (!engraving) return () => {};
-        return () => level = newLevel;
+
+        return () => {
+            level = newLevel;
+            onLvlChange(newLevel);
+        }
     }
 </script>
 
