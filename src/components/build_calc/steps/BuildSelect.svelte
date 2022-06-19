@@ -9,7 +9,7 @@
   import Button from "../../generic/Button.svelte";
 
   export let builder: BuildCalculator;
-  let selectedEngravings: Build = builder.getBuild();
+  let build: Build = builder.getBuild();
 
   let engravingSelect = undefined;
   let engravingSelectPkg = {
@@ -37,18 +37,21 @@
       eng.level = lvl;
       const error = document.getElementById("error_message");
 
-      if (builder.isValid(selectedEngravings)) {
-        builder.setBuild(selectedEngravings);
+      if (builder.isValid(build)) {
+        builder.setBuild(build);
         ViewUtils.hide(error);
       } else {
         ViewUtils.show(error);
       }
+
+      // Updating view also.
+      build = builder.getBuild();
     };
   }
 
   function addEngraving(key: string) {
-    selectedEngravings[selectedEngravings.length] = {
-      engraving: DAO.getEngraving(key),
+    build.engravings[build.engravings.length] = {
+      eKey: key,
       level: 0,
     };
   }
@@ -66,19 +69,38 @@
   <div class="flex flex-row h-full flex-wrap">
     <div id="engravings" class="flex flex-col flex-wrap w-1/2 pr-1">
       <Engraving on:click={toggleSelect} size="w-full" />
-      {#each selectedEngravings as e}
+      {#each build.engravings as e}
         <Engraving
           onLvlChange={updateLvl(e)}
-          engraving={e.engraving}
+          engraving={DAO.getEngraving(e.eKey)}
           level={e.level}
           size="w-full"
         />
       {/each}
     </div>
-    <div class="flex flex-col h-full w-1/2 bg-gray-900 pl-1 items-center">
-      <h1 id="error_message" class="hidden text-red-600 w-1/2 text-center mt-3">
-        Impossible build. Remove engraving or decrese level.
-      </h1>
+    <div class="desc-section">
+      <h1 class="text-center">Select your engravings:</h1>
+      <hr />
+      <p>
+        This tool will attempt to calculate the most cost efficient combination
+        of accessories, books and stone required to obtain engravings selected
+        here.
+      </p>
+      <p>
+        Since API for price checking is not available in NA/EU, you will have to
+        insert prices manually.
+        <b>
+          Complexity of the build will determine how many prices you have to
+          insert on the later step.
+        </b>
+      </p>
+      <hr />
+      <p>Current points required: {build.reqPoints}</p>
+      <div id="error_message" class="hidden text-red-600 text-center">
+        <hr />
+        <h1>ERROR:</h1>
+        <p>Impossible build. Remove engraving or decrese level.</p>
+      </div>
     </div>
   </div>
 </div>

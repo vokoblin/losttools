@@ -85,9 +85,9 @@
     />
     <StepTab
       selected={step == BuildPrices}
-      name="Prices" 
-      icon={"icon_gold"} 
-      on:click={goToStep("prices")} 
+      name="Prices"
+      icon={"icon_gold"}
+      on:click={goToStep("prices")}
     />
   </div>
   <svelte:component this={step} {builder} on:click={goToStep(nextStep)} />

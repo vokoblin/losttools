@@ -1,7 +1,7 @@
-import type { Engraving } from "./Types";
+import type { Engraving, Engravings } from "./Types";
 
 export default class DAO {
-    private static engravings: Engraving[] = [
+    private static engravingsList: Engraving[] = [
         { key: 'Adrenaline', name: "Adrenaline", desc: "", type: "battle" },
         { key: 'AllOutAttack', name: "All-Out Attack", desc: "", type: "battle" },
         { key: 'AmbushMaster', name: "Ambush Master", desc: "", type: "battle" },
@@ -85,19 +85,27 @@ export default class DAO {
         { key: 'FirstIntention', class: "wardancer", type: "class", name: "First Intention", desc: "" },
     ];
 
+    private static engravings: Engravings;
     private static classes: string[];
 
     public static getEngravings(): Engraving[] {
-        return this.engravings;
+        if (!this.engravings) {
+            this.engravings = {};
+            this.engravingsList.forEach(e => this.engravings[e.key] = e);
+        }
+
+        return Object.values(this.engravings);
     }
 
     public static getEngraving(key: string): Engraving {
-        return this.engravings.find(e => e.key == key)
+        return this.engravings[key];
     }
 
     public static getClasses(): string[] {
         if (!this.classes) {
-            this.classes = this.engravings.filter(e => e.class).map(e => e.class);
+            this.classes = this.getEngravings()
+                .filter(e => e.class)
+                .map(e => e.class);
         }
 
         return this.classes
