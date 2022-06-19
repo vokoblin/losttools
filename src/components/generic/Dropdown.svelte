@@ -1,15 +1,15 @@
 <script lang="ts">
   export let text = "";
   export let options = {};
-  export let id = 'selector';
+  export let id = "selector";
 
-  export let value = '';
+  export let value = "";
 </script>
 
 <div class="flex items-center w-full h-full">
-  <span class="mr-3">{text}:</span>
+  <span class={text ? "mr-3" : ""}>{text}</span>
   <div class="relative w-full">
-    <select id={id} bind:value={value}>
+    <select {id} bind:value>
       {#each Object.keys(options) as key}
         <option value={key}>{options[key]}</option>
       {/each}

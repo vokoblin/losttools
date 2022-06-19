@@ -58,7 +58,7 @@
   <div class="flex flex-row mb-20">
     <Dropdown
       id="class_selector"
-      text="Class"
+      text="Class:"
       options={getClassOptions()}
       bind:value={engravingSelectPkg.userClass}
     />

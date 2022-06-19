@@ -11,8 +11,26 @@
   let step;
   let nextStep;
 
+  function allowTransition() {
+    if (step === BuildSelect) {
+      return builder.isValid(builder.getBuild());
+    }
+    if (step === BookSelect) {
+      return true;
+    }
+    if (step === StoneSelect) {
+      return true;
+    }
+    if (step === BuildPrices) {
+      return true;
+    }
+
+    return true;
+  }
+
   function goToStep(toStep: string) {
     return () => {
+      if (!allowTransition()) return;
       switch (toStep) {
         case "build":
           step = BuildSelect;

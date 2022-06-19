@@ -1,9 +1,41 @@
 <script lang="ts">
+    import Dropdown from "../../generic/Dropdown.svelte";
+    import type BuildCalculator from "../../../code/BuildCalculator";
+    import EngravingFrame from "../../engraving/EngravingFrame.svelte";
     import Button from "../../generic/Button.svelte";
 
     export let builder: BuildCalculator;
+
+    const options = {
+        '0': 'Not learned',
+        '3': 'Learned green (+3)',
+        '6': 'Learned blue (+6)',
+        '9': 'Learned ourple (+9)',
+        '12': 'Learned yellow (+12)'
+    };
 </script>
+
 <div class="flex flex-col h-full">
-    <h1>Books</h1>
+    <div class="flex flex-row h-full flex-wrap">
+        <div class="flex flex-col flex-wrap w-1/2 pr-1">
+            {#each builder.getBuild() as e}
+                <div class="flex flex-row flex-wrap pb-1">
+                    <div class="relative w-16 h-16">
+                        <EngravingFrame engraving={e.engraving} />
+                    </div>
+                    <div class="flex flex-col flex-grow">
+                        <div class="bg-gray-900 text-gray-400 p-1 text-center">
+                            {e.engraving.name}
+                        </div>
+                        <Dropdown {options} value='0' />
+                    </div>
+                </div>
+            {/each}
+        </div>
+        <div class="flex flex-col h-full w-1/2 bg-gray-900 pl-1 items-center">
+            <h1>Some description:</h1>
+            <p>Description of this page ................................</p>
+        </div>
+    </div>
 </div>
-<Button text="Next" on:click/>
+<Button text="Next" on:click />

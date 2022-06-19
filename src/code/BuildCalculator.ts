@@ -22,6 +22,6 @@ export default class BuildCalculator {
             reqPoints += engraving.level * 5;
         });
 
-        return reqPoints < this.MAXP_ALL;
+        return reqPoints < this.MAXP_ALL && reqPoints > 0;
     }
 }
