@@ -11,12 +11,7 @@
   export let builder: BuildCalculator;
   let build: Build = builder.getBuild();
 
-  let engravingSelect = undefined;
-  let engravingSelectPkg = {
-    onSelect: addEngraving,
-    userClass: DAO.getClasses()[0],
-    engravings: DAO.getEngravings(),
-  };
+  let engravingSelect;
 
   function getClassOptions() {
     const options = {};
@@ -63,7 +58,7 @@
       id="class_selector"
       text="Class:"
       options={getClassOptions()}
-      bind:value={engravingSelectPkg.userClass}
+      bind:value={build.pClass}
     />
   </div>
   <div class="flex flex-row h-full flex-wrap">
@@ -109,6 +104,7 @@
 
 <svelte:component
   this={engravingSelect}
-  {...engravingSelectPkg}
+  userClass={build.pClass}
+  onSelect={addEngraving}
   on:click={toggleSelect}
 />

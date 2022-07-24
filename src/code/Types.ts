@@ -8,7 +8,8 @@ export type Book = { eKey: string, points: string };
 export type BuildEng = { eKey: string, level: number };
 
 export type Build = {
+    pClass: string,
     engravings: BuildEng[],
-    equipedBooks: Book[],
+    equippedBooks: Book[],
     reqPoints: number
 };

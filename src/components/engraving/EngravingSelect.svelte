@@ -1,8 +1,9 @@
 <script lang="ts">
     import EngravingFrame from "./EngravingFrame.svelte";
+    import DAO from "../../code/DAO";
 
     export let onSelect: (key: string) => void;
-    export let engravings = [];
+    export let engravings = DAO.getEngravings();
     export let userClass = undefined;
     export let size = "w-1/4 h-1/2";
 

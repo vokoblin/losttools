@@ -1,6 +1,19 @@
 import type { Engraving, Engravings } from "./Types";
 
 export default class DAO {
+    public static global = {
+        marketURL: 'https://www.lostarkmarket.online/api/export-market-live/',
+        region: 'euc',
+    };
+
+    private static regions = {
+        nae: 'North America East',
+        naw: 'North America West',
+        euc: 'Europe Central',
+        euw: 'Europe West',
+        sa: 'South America',
+    };
+
     private static engravingsList: Engraving[] = [
         { key: 'Adrenaline', name: "Adrenaline", desc: "", type: "battle" },
         { key: 'AllOutAttack', name: "All-Out Attack", desc: "", type: "battle" },
@@ -85,15 +98,20 @@ export default class DAO {
         { key: 'FirstIntention', class: "wardancer", type: "class", name: "First Intention", desc: "" },
     ];
 
-    private static engravings: Engravings;
-    private static classes: string[];
+    private static engravings: Engravings = {};
+    private static classes: string[] = [];
+
+    public static initialise(): void {
+        // Creating engraving Map
+        this.engravingsList.forEach(e => this.engravings[e.key] = e);
+
+        // Populating class array
+        this.classes = this.getEngravings()
+            .filter(e => e.class)
+            .map(e => e.class);
+    }
 
     public static getEngravings(): Engraving[] {
-        if (!this.engravings) {
-            this.engravings = {};
-            this.engravingsList.forEach(e => this.engravings[e.key] = e);
-        }
-
         return Object.values(this.engravings);
     }
 
@@ -102,12 +120,22 @@ export default class DAO {
     }
 
     public static getClasses(): string[] {
-        if (!this.classes) {
-            this.classes = this.getEngravings()
-                .filter(e => e.class)
-                .map(e => e.class);
-        }
-
         return this.classes
+    }
+
+    public static getRegions(): object {
+        return this.regions;
+    }
+
+    public static getRegion(regionCode: string): string {
+        return this.regions[regionCode];
+    }
+
+    public static getSelectedRegion(): string {
+        return this.getRegion(this.global.region);
+    }
+
+    public static httpGet(url: string): Promise<any> {
+        return fetch(url).then(r => r.json()).then(d => d).catch(e => console.log(e));
     }
 }

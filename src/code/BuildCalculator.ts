@@ -7,8 +7,9 @@ export default class BuildCalculator {
     private readonly MAXP_ALL = this.MAXP_ACCES + this.MAXP_BOOKS + this.MAXP_STONE;
 
     private build: Build = {
+        pClass: 'artillerist',
         engravings: [],
-        equipedBooks: [],
+        equippedBooks: [],
         reqPoints: 0
     };
     private books: Book[] = [];
