@@ -1,17 +1,17 @@
-import type { Engraving, Engravings } from "./Types";
+import type { Engraving, Engravings, Region } from "./Types";
 
 export default class DAO {
     public static global = {
         marketURL: 'https://www.lostarkmarket.online/api/export-market-live/',
-        region: 'euc',
+        region: 'Europe West',
     };
 
     private static regions = {
-        nae: 'NAE',
-        naw: 'NAW',
-        euc: 'EUC',
-        euw: 'EUW',
-        sa: 'SA',
+        'North America East': 'NAE',
+        'North America West': 'NAW',
+        'Europe Central': 'EUC',
+        'Europe West': 'EUW',
+        'South America': 'SA',
     };
 
     private static engravingsList: Engraving[] = [
@@ -127,11 +127,11 @@ export default class DAO {
         return this.regions;
     }
 
-    public static getRegion(regionCode: string): string {
-        return this.regions[regionCode];
+    public static getRegion(regionCode: string): Region {
+        return {full: regionCode, short: this.regions[regionCode]};
     }
 
-    public static getSelectedRegion(): string {
+    public static getSelectedRegion(): Region {
         return this.getRegion(this.global.region);
     }
 

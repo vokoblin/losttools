@@ -6,6 +6,7 @@ export type Engraving = { key: string, type: string, class?: string, name: strin
 export type Engravings = { [key: string]: Engraving };
 export type Book = { eKey: string, points: string };
 export type BuildEng = { eKey: string, level: number };
+export type Region = {full: string, short: string};
 
 export type Build = {
     pClass: string,

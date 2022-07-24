@@ -14,7 +14,7 @@
 	let build = builder.getBuild();
 
 	let region = DAO.getSelectedRegion();
-	let prices = DAO.httpGet(`${DAO.global.marketURL}${region}?category=Engraving%20Recipe`).then(data => {
+	let prices = DAO.httpGet(`${DAO.global.marketURL}${region.full}?category=Engraving%20Recipe`).then(data => {
 		const result: {[key: string]: number[]} = {};
 		for (const price of data) {
 			for (const chosenBook of builder.getBooks()) {
