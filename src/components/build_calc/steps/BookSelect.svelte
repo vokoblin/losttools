@@ -68,7 +68,7 @@
                         <div class="flex bg-gray-900 text-gray-400 p-1 justify-center">
                             {DAO.getEngraving(b.eKey).name}
                             {#await prices}
-                                <img class='w-full h-full' src={LoadingImg} />
+                                (price: <img alt="" class='h-5 w-5' src={LoadingImg} />)
                             {:then prices}
                                 (price: {prices[b.eKey][b.points]})
                             {:catch error}
