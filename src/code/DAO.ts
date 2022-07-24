@@ -7,11 +7,11 @@ export default class DAO {
     };
 
     private static regions = {
-        nae: 'North America East',
-        naw: 'North America West',
-        euc: 'Europe Central',
-        euw: 'Europe West',
-        sa: 'South America',
+        nae: 'NAE',
+        naw: 'NAW',
+        euc: 'EUC',
+        euw: 'EUW',
+        sa: 'SA',
     };
 
     private static engravingsList: Engraving[] = [
